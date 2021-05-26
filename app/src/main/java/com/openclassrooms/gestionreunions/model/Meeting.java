@@ -1,5 +1,7 @@
 package com.openclassrooms.gestionreunions.model;
 
+import android.text.format.DateFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class Meeting {
 
     private Location Location;
 
-    private String Subjet;
+    private String Subject;
 
     private List<Contributor> Contributors;
 
@@ -19,7 +21,7 @@ public class Meeting {
         this.id = id;
         this.date = date;
         this.Location = Location;
-        this.Subjet = Subject;
+        this.Subject = Subject;
         this.Contributors = Contributors;
     }
 
@@ -36,6 +38,14 @@ public class Meeting {
         return date;
     }
 
+    public String getDay() {
+        return DateFormat.format("dd/MM/yyyy", date).toString();
+    }
+
+    public String getHour() {
+        return DateFormat.format("hh:mm", date).toString();
+    }
+
     public void setDate(Date date) {
         this.date = date;
     }
@@ -48,12 +58,12 @@ public class Meeting {
         Location = location;
     }
 
-    public String getSubjet() {
-        return Subjet;
+    public String getSubject() {
+        return Subject;
     }
 
-    public void setSubjet(String subjet) {
-        Subjet = subjet;
+    public void setSubject(String subject) {
+        Subject = subject;
     }
 
     public List<Contributor> getContributors() {

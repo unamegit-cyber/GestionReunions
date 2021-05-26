@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">GestionReunions</string>
+    <string name="app_name">Gestion des réunions</string>
+    <string name="Fragment_Meeting_List">Liste des réunions</string>
 </resources>
