@@ -74,4 +74,8 @@ public class Meeting {
         Contributors = contributors;
     }
 
+    public String getContributorsEmails() {
+        return Contributors.get(0).getEmail();
+    }
+
 }
