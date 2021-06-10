@@ -29,6 +29,11 @@ public class ListMeetingActivity extends AppCompatActivity {
 
         MyMeetingRecyclerViewAdapter myMeetingRecyclerViewAdapter = new MyMeetingRecyclerViewAdapter(meetingList, this);
         binding.setMyAdapter(myMeetingRecyclerViewAdapter);
+        binding.setAddClickListener(this);
+    }
+
+    public void addMeeting() {
+        AddMeetingActivity.navigate(this);
     }
 
 }

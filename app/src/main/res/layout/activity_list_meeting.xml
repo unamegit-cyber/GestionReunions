@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="myAdapter"
             type="com.openclassrooms.gestionreunions.ui.MyMeetingRecyclerViewAdapter" />
-
+        <variable
+            name="addClickListener"
+            type="com.openclassrooms.gestionreunions.ui.ListMeetingActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,6 +28,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_meeting"
+            android:onClick="@{() -> addClickListener.addMeeting()}"
             app:backgroundTint="@color/purple_200"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

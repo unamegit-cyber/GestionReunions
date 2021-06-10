@@ -2,18 +2,22 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+        <variable
+            name="position"
+            type="int" />
         <variable
             name="meeting"
             type="com.openclassrooms.gestionreunions.model.Meeting" />
         <variable
             name="itemClickListener"
-            type="com.openclassrooms.gestionreunions.ui.CustomClickListener" />
+            type="com.openclassrooms.gestionreunions.ui.ItemClickListener" />
     </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> itemClickListener.cardClicked(meeting)}"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,6 +46,7 @@
 
             <ImageView
                 android:id="@+id/delete"
+                android:onClick="@{() -> itemClickListener.removeSingleItem(meeting, position)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
