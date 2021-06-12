@@ -4,6 +4,7 @@ import android.text.format.DateFormat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Meeting {
 
@@ -11,22 +12,25 @@ public class Meeting {
 
     private Date date;
 
-    private Location Location;
+    private Location location;
 
-    private String Subject;
+    private String subject;
 
-    private List<Contributor> Contributors;
+    private List<Contributor> contributors;
 
-    public Meeting(long id, Date date, Location Location, String Subject, List<Contributor> Contributors) {
+    private Integer color;
+
+    public Meeting(long id, Date date, Location location, String subject, List<Contributor> contributors, Integer color) {
         this.id = id;
         this.date = date;
-        this.Location = Location;
-        this.Subject = Subject;
-        this.Contributors = Contributors;
+        this.location = location;
+        this.subject = subject;
+        this.contributors = contributors;
+        this.color = color;
     }
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -34,16 +38,24 @@ public class Meeting {
         this.id = id;
     }
 
+    public Integer getColor() {
+        return this.color;
+    }
+
+    public void setColor(Integer color) {
+        this.color = color;
+    }
+
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public String getDay() {
-        return DateFormat.format("dd/MM/yyyy", date).toString();
+        return DateFormat.format("dd/MM/yyyy", this.date).toString();
     }
 
     public String getHour() {
-        return DateFormat.format("hh:mm", date).toString();
+        return DateFormat.format("hh:mm", this.date).toString();
     }
 
     public void setDate(Date date) {
@@ -51,31 +63,44 @@ public class Meeting {
     }
 
     public Location getLocation() {
-        return Location;
+        return this.location;
     }
 
     public void setLocation(Location location) {
-        Location = location;
+        this.location = location;
     }
 
     public String getSubject() {
-        return Subject;
+        return this.subject;
     }
 
     public void setSubject(String subject) {
-        Subject = subject;
+        this.subject = subject;
     }
 
     public List<Contributor> getContributors() {
-        return Contributors;
+        return this.contributors;
     }
 
     public void setContributors(List<Contributor> contributors) {
-        Contributors = contributors;
+        this.contributors = contributors;
     }
 
     public String getContributorsEmails() {
-        return Contributors.get(0).getEmail();
+        return this.contributors.get(0).getEmail();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meeting meeting = (Meeting) o;
+        return Objects.equals(this.id, meeting.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
 }

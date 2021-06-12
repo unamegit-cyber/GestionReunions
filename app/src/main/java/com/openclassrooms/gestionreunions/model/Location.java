@@ -4,15 +4,15 @@ public class Location {
 
     private long id;
 
-    private String Room;
+    private String room;
 
     public Location(long id, String room) {
         this.id = id;
-        Room = room;
+        this.room = room;
     }
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
@@ -20,11 +20,11 @@ public class Location {
     }
 
     public String getRoom() {
-        return Room;
+        return this.room;
     }
 
     public void setRoom(String room) {
-        Room = room;
+        this.room = room;
     }
 
 }

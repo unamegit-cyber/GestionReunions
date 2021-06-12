@@ -4,17 +4,17 @@ public class Contributor {
 
     private long id;
 
-    private String Nom;
+    private String nom;
 
-    private String Prenom;
+    private String prenom;
 
-    private String Email;
+    private String email;
 
     public Contributor(long id, String nom, String prenom, String email) {
         this.id = id;
-        Nom = nom;
-        Prenom = prenom;
-        Email = email;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
     }
 
     public long getId() {
@@ -26,27 +26,27 @@ public class Contributor {
     }
 
     public String getNom() {
-        return Nom;
+        return nom;
     }
 
     public void setNom(String nom) {
-        Nom = nom;
+        this.nom = nom;
     }
 
     public String getPrenom() {
-        return Prenom;
+        return this.prenom;
     }
 
     public void setPrenom(String prenom) {
-        Prenom = prenom;
+        this.prenom = prenom;
     }
 
     public String getEmail() {
-        return Email;
+        return this.email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
 }

@@ -18,11 +18,11 @@ public class MyMeetingRecyclerViewAdapter
         extends RecyclerView.Adapter<MyMeetingRecyclerViewAdapter.ViewHolder>
         implements ItemClickListener {
 
-    private List<Meeting> MeetingList;
+    private List<Meeting> meetingList;
     private Context context;
 
     public MyMeetingRecyclerViewAdapter(List<Meeting> meetingList, Context ctx) {
-        this.MeetingList = meetingList;
+        this.meetingList = meetingList;
         context = ctx;
     }
 
@@ -32,13 +32,12 @@ public class MyMeetingRecyclerViewAdapter
         FragmentMeetingBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 R.layout.fragment_meeting, parent, false);
-
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Meeting meeting = MeetingList.get(position);
+        Meeting meeting = meetingList.get(position);
         holder.bind(meeting);
         holder.fragmentMeeting.setItemClickListener(this);
         holder.fragmentMeeting.setPosition(position);
@@ -46,7 +45,7 @@ public class MyMeetingRecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        return MeetingList.size();
+        return meetingList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,8 +64,7 @@ public class MyMeetingRecyclerViewAdapter
 
     @Override
     public void removeSingleItem(Meeting meeting, int position) {
-        //MeetingList.remove(meeting);
-        //MeetingList.remove(position);
+        meetingList.remove(meeting);
         this.notifyItemRemoved(position);
     }
 }
