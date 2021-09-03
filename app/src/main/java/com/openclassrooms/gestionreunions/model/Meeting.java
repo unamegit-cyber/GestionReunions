@@ -34,7 +34,6 @@ public class Meeting {
     }
 
     public void setId(long id) {
-
         this.id = id;
     }
 
@@ -86,8 +85,19 @@ public class Meeting {
         this.contributors = contributors;
     }
 
+    public String getTitle() {
+        return this.getSubject() + " - " + this.getHour() + " - " + this.getLocation().getRoom();
+    }
+
     public String getContributorsEmails() {
-        return this.contributors.get(0).getEmail();
+        String contributorsEmailsList = "";
+        for (int i = 0; i < this.contributors.size(); i++) {
+            if (contributorsEmailsList != "") {
+                contributorsEmailsList += ", ";
+            }
+            contributorsEmailsList += this.contributors.get(i).getEmail();
+        }
+        return contributorsEmailsList;
     }
 
     @Override
@@ -100,7 +110,7 @@ public class Meeting {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(this.id);
     }
 
 }

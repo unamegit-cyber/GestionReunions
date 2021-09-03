@@ -24,32 +24,50 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent">
 
-            <TextView
-                android:id="@+id/label"
+            <ImageView
+                android:id="@+id/circle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginRight="@dimen/text_margin"
-                android:text="@{meeting.getSubject()}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+                android:layout_marginStart="@dimen/img_start_margin"
+                android:layout_marginBottom="@dimen/text_margin"
+                android:src="@drawable/ic_baseline_circle_60"/>
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/circle"
+                app:layout_constraintEnd_toStartOf="@+id/delete"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/top_margin"
+                android:layout_marginStart="@dimen/img_start_margin"
+                android:text="@{meeting.getTitle()}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:singleLine="true"/>
 
             <TextView
                 android:id="@+id/contributors"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/circle"
                 app:layout_constraintTop_toBottomOf="@+id/label"
-                android:layout_marginRight="@dimen/text_margin"
+                app:layout_constraintEnd_toStartOf="@+id/delete"
+                android:layout_marginStart="@dimen/img_start_margin"
                 android:text="@{meeting.getContributorsEmails()}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:singleLine="true" />
 
             <ImageView
                 android:id="@+id/delete"
-                android:onClick="@{() -> itemClickListener.removeSingleItem(meeting, position)}"
+                android:onClick="@{() -> itemClickListener.removeItem(meeting)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
+                android:layout_margin="@dimen/img_start_margin"
                 android:background="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/label"

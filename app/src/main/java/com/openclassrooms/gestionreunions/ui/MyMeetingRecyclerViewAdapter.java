@@ -4,7 +4,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.openclassrooms.gestionreunions.BR;
@@ -12,23 +15,25 @@ import com.openclassrooms.gestionreunions.R;
 import com.openclassrooms.gestionreunions.model.Meeting;
 import com.openclassrooms.gestionreunions.databinding.FragmentMeetingBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyMeetingRecyclerViewAdapter
         extends RecyclerView.Adapter<MyMeetingRecyclerViewAdapter.ViewHolder>
         implements ItemClickListener {
 
-    private List<Meeting> meetingList;
+    private ArrayList<Meeting> meetingList;
     private Context context;
+    public MyMeetingRecyclerViewAdapter adapter;
 
-    public MyMeetingRecyclerViewAdapter(List<Meeting> meetingList, Context ctx) {
+    public MyMeetingRecyclerViewAdapter(ArrayList<Meeting> meetingList, Context ctx) {
         this.meetingList = meetingList;
         context = ctx;
+        adapter = this;
     }
 
     @Override
-    public MyMeetingRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                      int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         FragmentMeetingBinding binding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.getContext()),
                 R.layout.fragment_meeting, parent, false);
@@ -41,12 +46,18 @@ public class MyMeetingRecyclerViewAdapter
         holder.bind(meeting);
         holder.fragmentMeeting.setItemClickListener(this);
         holder.fragmentMeeting.setPosition(position);
+        holder.fragmentMeeting.circle.setColorFilter(meeting.getColor(), PorterDuff.Mode.SRC_ATOP);
     }
 
     @Override
     public int getItemCount() {
         return meetingList.size();
     }
+
+    public MyMeetingRecyclerViewAdapter getAdapter() {
+        return adapter;
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public FragmentMeetingBinding fragmentMeeting;
@@ -62,9 +73,16 @@ public class MyMeetingRecyclerViewAdapter
         }
     }
 
-    @Override
-    public void removeSingleItem(Meeting meeting, int position) {
+    public void removeItem(Meeting meeting) {
+//        int position = meetingList.indexOf(meeting);
         meetingList.remove(meeting);
-        this.notifyItemRemoved(position);
+        this.notifyDataSetChanged();
+//        this.notifyItemRemoved(position);
     }
+
+    public void addItem(Meeting meeting) {
+        meetingList.add(meeting);
+        this.notifyDataSetChanged();
+    }
+
 }

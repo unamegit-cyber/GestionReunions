@@ -18,7 +18,7 @@ public class DummyMeetingGenerator {
 
     private static String DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
-    private static Date stringToDate(String date) {
+    public static Date stringToDate(String date) {
         SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
         try {
             return format.parse(date);
@@ -57,7 +57,7 @@ public class DummyMeetingGenerator {
             new Meeting(3, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(3)),
             new Meeting(4, stringToDate("2020-12-13 19:45"), DUMMY_LOCATIONS.get(1), "Pourquoi la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2), DUMMY_CONTRIBUTORS.get(3)), DUMMY_COLORS.get(0)),
             new Meeting(5, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(0)),
-            new Meeting(6, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(2)),
+            new Meeting(6, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(2))/*,
             new Meeting(7, stringToDate("2020-12-13 19:45"), DUMMY_LOCATIONS.get(1), "Pourquoi la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2), DUMMY_CONTRIBUTORS.get(3)), DUMMY_COLORS.get(3)),
             new Meeting(9, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(0)),
             new Meeting(10, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(1)),
@@ -68,10 +68,10 @@ public class DummyMeetingGenerator {
             new Meeting(15, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(1)),
             new Meeting(16, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(0)),
             new Meeting(17, stringToDate("2020-12-13 19:45"), DUMMY_LOCATIONS.get(1), "Pourquoi la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2), DUMMY_CONTRIBUTORS.get(3)), DUMMY_COLORS.get(0)),
-            new Meeting(18, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(3))
+            new Meeting(18, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(3))*/
     );
 
-    static List<Meeting> generateMeetings() {
+    static public List<Meeting> generateMeetings() {
         return new ArrayList<>(DUMMY_MEETINGS);
     }
 

@@ -1,5 +1,7 @@
 package com.openclassrooms.gestionreunions.model;
 
+import java.util.Objects;
+
 public class Contributor {
 
     private long id;
@@ -47,6 +49,19 @@ public class Contributor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contributor contributor = (Contributor) o;
+        return Objects.equals(this.id, contributor.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
     }
 
 }

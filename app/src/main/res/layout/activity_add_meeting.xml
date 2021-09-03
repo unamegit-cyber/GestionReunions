@@ -12,60 +12,98 @@
             name="colorAdapter"
             type="android.widget.ArrayAdapter"
             tools:ignore="XmlEscapeNeeded" />
+        <variable
+            name="contributorsAdapter"
+            type="android.widget.ArrayAdapter"
+            tools:ignore="XmlEscapeNeeded" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.AddMeetingActivity">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/subject"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/add_subject"
-            android:layout_margin="16dp"/>
+            android:layout_height="match_parent"
+            tools:context=".ui.AddMeetingActivity">
 
-        <Spinner
-            android:id="@+id/color"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/subject"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/add_color_spinner"
-            app:adapter="@{locationAdapter}"
-            android:layout_margin="16dp"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/subject"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/add_subject"
+                android:layout_margin="16dp"/>
 
-        <Spinner
-            android:id="@+id/location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/color"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/add_location_spinner"
-            app:adapter="@{colorAdapter}"
-            android:layout_margin="16dp"/>
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/subject"
+                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/add_color_spinner"
+                app:adapter="@{locationAdapter}"
+                android:layout_margin="16dp"/>
 
-        <DatePicker
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/location"
-            app:layout_constraintStart_toStartOf="parent"
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false"
-            android:layout_margin="16dp"/>
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/color"
+                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/add_location_spinner"
+                app:adapter="@{colorAdapter}"
+                android:layout_margin="16dp"/>
 
-        <TimePicker
-            android:id="@+id/time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/date"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_margin="16dp"/>
+            <com.openclassrooms.gestionreunions.ui.MultiSpinner
+                android:id="@+id/contributors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/location"
+                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/add_contributor_spinner"
+                app:adapter="@{contributorsAdapter}"
+                android:layout_margin="16dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <DatePicker
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/contributors"
+                app:layout_constraintStart_toStartOf="parent"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:layout_margin="16dp"/>
+
+            <TimePicker
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="16dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:enabled="false"
+                android:text="Create"
+                android:onClick="addMeeting"
+                app:cornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/time" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
