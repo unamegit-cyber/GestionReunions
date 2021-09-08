@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.openclassrooms.gestionreunions.BR;
 import com.openclassrooms.gestionreunions.R;
+import com.openclassrooms.gestionreunions.di.DI;
 import com.openclassrooms.gestionreunions.model.Meeting;
 import com.openclassrooms.gestionreunions.databinding.FragmentMeetingBinding;
 
@@ -74,13 +75,13 @@ public class MyMeetingRecyclerViewAdapter
     }
 
     public void removeItem(Meeting meeting) {
-//        int position = meetingList.indexOf(meeting);
+        DI.getMeetingApiService().deleteMeeting(meeting); // Appeler l'API depuis un fragment ou activite pour respecter le modele MVC - Puis modele MVVM
         meetingList.remove(meeting);
         this.notifyDataSetChanged();
-//        this.notifyItemRemoved(position);
     }
 
     public void addItem(Meeting meeting) {
+        DI.getMeetingApiService().createMeeting(meeting);
         meetingList.add(meeting);
         this.notifyDataSetChanged();
     }

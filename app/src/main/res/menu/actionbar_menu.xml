@@ -6,6 +6,7 @@
         android:onClick="filterByDate"
         android:title="@string/toolbar_filter_date" />
     <item android:id="@+id/filter_lieu"
+        android:onClick="filterByRoom"
         android:title="@string/toolbar_filter_lieu" />
 
 </menu>

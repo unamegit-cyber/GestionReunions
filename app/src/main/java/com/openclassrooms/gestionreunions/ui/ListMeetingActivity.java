@@ -40,13 +40,12 @@ public class ListMeetingActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_menu, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // switch item
+        // switch by item ?
         Log.d("item", String.valueOf(item.getTitle()));
         return super.onOptionsItemSelected(item);
     }
@@ -72,11 +71,17 @@ public class ListMeetingActivity extends AppCompatActivity {
         }
     }
 
+    public void filterByRoom(MenuItem item){
+
+    }
+
     public void filterByDate(MenuItem item){
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Log.e("DATE:", dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                meetingList.clear();
+                meetingList.addAll(DI.getMeetingApiService().getMeetingsFilteredByDate(year, monthOfYear, dayOfMonth));
+                binding.recyclerView.getAdapter().notifyDataSetChanged();
             }
         };
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());

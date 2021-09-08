@@ -2,7 +2,10 @@ package com.openclassrooms.gestionreunions.service;
 
 import com.openclassrooms.gestionreunions.model.Meeting;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class DummyMeetingApiService implements MeetingApiService {
@@ -12,6 +15,21 @@ public class DummyMeetingApiService implements MeetingApiService {
     @Override
     public List<Meeting> getMeetings() {
         return meetings;
+    }
+
+    @Override
+    public List<Meeting> getMeetingsFilteredByDate(int year, int monthOfYear, int dayOfMonth) {
+        List<Meeting> meetingsFilteredByDate = new ArrayList<>();
+        for (Meeting meeting : meetings) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(meeting.getDate());
+            if (cal.get(Calendar.DAY_OF_MONTH) == dayOfMonth &&
+                cal.get(Calendar.MONTH) == monthOfYear &&
+                cal.get(Calendar.YEAR) == year) {
+                meetingsFilteredByDate.add(meeting);
+            }
+        }
+        return meetingsFilteredByDate;
     }
 
     @Override

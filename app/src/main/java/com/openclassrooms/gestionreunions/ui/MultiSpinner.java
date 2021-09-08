@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 
+import com.openclassrooms.gestionreunions.model.Contributor;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner implements
@@ -63,7 +66,7 @@ public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner imp
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMultiChoiceItems(
                 items.toArray(new CharSequence[items.size()]), selected, this);
-        builder.setPositiveButton(android.R.string.ok,
+                builder.setPositiveButton(android.R.string.ok,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -78,5 +81,15 @@ public class MultiSpinner extends androidx.appcompat.widget.AppCompatSpinner imp
     public void setItems(List<String> items) {
         this.items = items;
         this.selected = new boolean[items.size()];
+    }
+
+    public ArrayList<String> getItems() {
+        ArrayList<String> result = new ArrayList<>();
+        for(int i = 0; i < this.items.size(); i++) {
+            if (this.selected[i]) {
+                result.add(this.items.get(i));
+            }
+        }
+        return result;
     }
 }

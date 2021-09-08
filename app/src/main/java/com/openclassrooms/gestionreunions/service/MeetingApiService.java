@@ -8,7 +8,7 @@ public interface MeetingApiService {
 
     List<Meeting> getMeetings();
 
-    // getmeetingbyroom
+    List<Meeting> getMeetingsFilteredByDate(int year, int monthOfYear, int dayOfMonth);
 
     public Meeting getMeeting(long id);
 

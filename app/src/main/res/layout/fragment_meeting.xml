@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/label"
                 app:layout_constraintEnd_toStartOf="@+id/delete"
                 android:layout_marginStart="@dimen/img_start_margin"
-                android:text="@{meeting.getContributorsEmails()}"
+                android:text="@{meeting.getContributorEmailsString()}"
                 android:textSize="12sp"
                 android:ellipsize="end"
                 android:singleLine="true" />

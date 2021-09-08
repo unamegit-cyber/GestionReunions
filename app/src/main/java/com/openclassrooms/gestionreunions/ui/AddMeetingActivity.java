@@ -1,40 +1,35 @@
-package com.openclassrooms.gestionreunions.ui;
+  package com.openclassrooms.gestionreunions.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.bluetooth.BluetoothManager;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
 
 import com.openclassrooms.gestionreunions.R;
 import com.openclassrooms.gestionreunions.databinding.ActivityAddMeetingBinding;
 import com.openclassrooms.gestionreunions.di.DI;
-import com.openclassrooms.gestionreunions.model.Contributor;
 import com.openclassrooms.gestionreunions.model.Location;
 import com.openclassrooms.gestionreunions.model.Meeting;
-import com.openclassrooms.gestionreunions.service.DummyMeetingApiService;
 import com.openclassrooms.gestionreunions.service.DummyMeetingGenerator;
-import com.openclassrooms.gestionreunions.service.MeetingApiService;
 import com.openclassrooms.gestionreunions.ui.AddMeetingAdapters.SpinnerColorAdapter;
-import com.openclassrooms.gestionreunions.ui.AddMeetingAdapters.SpinnerContributorAdapter;
 import com.openclassrooms.gestionreunions.ui.AddMeetingAdapters.SpinnerLocationAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import static com.openclassrooms.gestionreunions.service.DummyMeetingGenerator.DUMMY_COLORS;
 import static com.openclassrooms.gestionreunions.service.DummyMeetingGenerator.DUMMY_CONTRIBUTORS;
@@ -45,13 +40,13 @@ public class AddMeetingActivity extends AppCompatActivity {
     private ActivityAddMeetingBinding binding;
     private SpinnerLocationAdapter locationAdapter;
     private SpinnerColorAdapter colorAdapter;
-    private SpinnerContributorAdapter contributorsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_meeting);
         this.populateData();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void populateData() {
@@ -79,11 +74,6 @@ public class AddMeetingActivity extends AppCompatActivity {
             contributorsEmailsArray[i] = DUMMY_CONTRIBUTORS.get(i).getEmail();
         }
         binding.contributors.setItems(Arrays.asList(contributorsEmailsArray));
-        /*
-        List<Contributor> contributorsList = DUMMY_CONTRIBUTORS;
-        this.contributorsAdapter = new SpinnerContributorAdapter(this, android.R.layout.simple_spinner_item, contributorsList);
-        binding.setContributorsAdapter(this.contributorsAdapter);
-        */
     }
 
     public static void navigate(FragmentActivity activity) {
@@ -91,37 +81,40 @@ public class AddMeetingActivity extends AppCompatActivity {
         ActivityCompat.startActivity(activity, intent, null);
     }
 
+    public void showDatePicker(View view) {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                binding.date.setText(String.valueOf(year) + "-" + (String.valueOf(monthOfYear)) + "-" + (String.valueOf(dayOfMonth)));
+            }
+        };
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, dateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
+    }
+
+    public void showTimePicker(View view) {
+        TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                binding.time.setText(String.valueOf(hourOfDay) + ":" + (String.valueOf(minute)));
+            }
+        };
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, timeSetListener, calendar.get(Calendar.HOUR), calendar.get(Calendar.MINUTE), true);
+        timePickerDialog.show();
+    }
+
     public void addMeeting(View view) {
-        MeetingApiService apiService = DI.getMeetingApiService();
-//Log.d("nb", String.valueOf(apiService.getMeetings().size()));
-
         Meeting meeting = new Meeting(
-                apiService.getMeetings().size(),
-                DummyMeetingGenerator.stringToDate("2022-10-11 12:35"),
-                new Location(2, "Room3"),
+                DI.getMeetingApiService().getMeetings().size(),
+                DummyMeetingGenerator.stringToDate(binding.date.getText() + " " + binding.time.getText()),
+                DummyMeetingGenerator.DUMMY_LOCATIONS.get(binding.location.getSelectedItemPosition()),
                 binding.subject.getText().toString(),
-                DummyMeetingGenerator.DUMMY_CONTRIBUTORS,//new ArrayList<Contributor>(), //binding.contributors.getSe
-                Color.parseColor("#0000FF")
+                binding.contributors.getItems(),
+                DummyMeetingGenerator.DUMMY_COLORS.get(binding.color.getSelectedItemPosition())
         );
-        apiService.createMeeting(meeting);
-
-/*
-        ArrayList<Meeting> meetingList = new ArrayList<>(DI.getMeetingApiService().getMeetings());
-        MyMeetingRecyclerViewAdapter myMeetingRecyclerViewAdapter = new MyMeetingRecyclerViewAdapter(meetingList, this);
-        myMeetingRecyclerViewAdapter.getAdapter().notifyDataSetChanged();
-//        RecyclerView.Adapter rootAdapter = myMeetingRecyclerViewAdapter.getAdapter();
-        Log.d("nb", String.valueOf(apiService.getMeetings().size()));
-
-        /*
-        Date date = new Date();
-        Meeting meeting = new Meeting(
-                apiService.getMeetings().size(),
-                date,
-                (Location) binding.location.getSelectedItem(),
-                binding.subject.getText().toString(),
-                DummyMeetingGenerator.DUMMY_CONTRIBUTORS,//new ArrayList<Contributor>(), //binding.contributors.getSe
-                (Integer) binding.color.getSelectedItem()
-        );*/
+        DI.getMeetingApiService().createMeeting(meeting);
         finish();
     }
 

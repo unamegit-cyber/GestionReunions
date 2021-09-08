@@ -39,13 +39,37 @@
                 android:hint="@string/add_subject"
                 android:layout_margin="16dp"/>
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/color"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/date"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/subject"
                 app:layout_constraintStart_toStartOf="parent"
-                android:hint="@string/add_color_spinner"
+                android:hint="@string/add_date"
+                android:onClick="showDatePicker"
+                android:clickable="true"
+                android:layout_margin="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/time"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/add_time"
+                android:onClick="showTimePicker"
+                android:clickable="true"
+                android:layout_margin="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/time"
+                app:layout_constraintStart_toStartOf="parent"
+                android:hint="@string/add_time"
                 app:adapter="@{locationAdapter}"
                 android:layout_margin="16dp"/>
 
@@ -69,24 +93,6 @@
                 app:adapter="@{contributorsAdapter}"
                 android:layout_margin="16dp" />
 
-            <DatePicker
-                android:id="@+id/date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/contributors"
-                app:layout_constraintStart_toStartOf="parent"
-                android:datePickerMode="spinner"
-                android:calendarViewShown="false"
-                android:layout_margin="16dp"/>
-
-            <TimePicker
-                android:id="@+id/time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/date"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_margin="16dp"/>
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/create"
                 style="@style/Widget.MaterialComponents.Button"
@@ -100,7 +106,7 @@
                 app:cornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/time" />
+                app:layout_constraintTop_toBottomOf="@id/contributors" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

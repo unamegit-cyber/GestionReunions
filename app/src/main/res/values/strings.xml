@@ -3,6 +3,8 @@
     <string name="Fragment_Meeting_List">Liste des réunions</string>
     <string name="add_location_spinner">Salle à sélectionner</string>
     <string name="add_color_spinner">Couleur à sélectionner</string>
+    <string name="add_date">Date à sélectionner</string>
+    <string name="add_time">Heure à sélectionner</string>
     <string name="add_contributor_spinner">Participants à sélectionner</string>
     <string name="add_subject">Sujet</string>
     <string name="toolbar_titre">Ma réu</string>

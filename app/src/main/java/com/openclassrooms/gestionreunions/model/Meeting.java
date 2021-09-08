@@ -16,16 +16,16 @@ public class Meeting {
 
     private String subject;
 
-    private List<Contributor> contributors;
+    private List<String> contributorEmails;
 
     private Integer color;
 
-    public Meeting(long id, Date date, Location location, String subject, List<Contributor> contributors, Integer color) {
+    public Meeting(long id, Date date, Location location, String subject, List<String> contributorEmails, Integer color) {
         this.id = id;
         this.date = date;
         this.location = location;
         this.subject = subject;
-        this.contributors = contributors;
+        this.contributorEmails = contributorEmails;
         this.color = color;
     }
 
@@ -77,27 +77,16 @@ public class Meeting {
         this.subject = subject;
     }
 
-    public List<Contributor> getContributors() {
-        return this.contributors;
+    public List<String> getContributorEmails() {
+        return this.contributorEmails;
     }
 
-    public void setContributors(List<Contributor> contributors) {
-        this.contributors = contributors;
+    public void setContributors(List<String> contributorEmails) {
+        this.contributorEmails = contributorEmails;
     }
 
     public String getTitle() {
         return this.getSubject() + " - " + this.getHour() + " - " + this.getLocation().getRoom();
-    }
-
-    public String getContributorsEmails() {
-        String contributorsEmailsList = "";
-        for (int i = 0; i < this.contributors.size(); i++) {
-            if (contributorsEmailsList != "") {
-                contributorsEmailsList += ", ";
-            }
-            contributorsEmailsList += this.contributors.get(i).getEmail();
-        }
-        return contributorsEmailsList;
     }
 
     @Override
@@ -111,6 +100,17 @@ public class Meeting {
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
+    }
+
+    public String getContributorEmailsString() {
+        String contributorsEmailsList = "";
+        for (int i = 0; i < this.contributorEmails.size(); i++) {
+            if (contributorsEmailsList != "") {
+                contributorsEmailsList += ", ";
+            }
+            contributorsEmailsList += this.contributorEmails.get(i);
+        }
+        return contributorsEmailsList;
     }
 
 }

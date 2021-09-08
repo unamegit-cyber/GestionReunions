@@ -51,13 +51,13 @@ public class DummyMeetingGenerator {
     private static Date now = Calendar.getInstance().getTime();
 
     public static List<Meeting> DUMMY_MEETINGS = Arrays.asList(
-            new Meeting(0, now, DUMMY_LOCATIONS.get(0), "today qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(0)),
-            new Meeting(1, now, DUMMY_LOCATIONS.get(1), "today Pourquoi la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2), DUMMY_CONTRIBUTORS.get(3)), DUMMY_COLORS.get(1)),
-            new Meeting(2, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(2)),
-            new Meeting(3, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(3)),
-            new Meeting(4, stringToDate("2020-12-13 19:45"), DUMMY_LOCATIONS.get(1), "Pourquoi la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2), DUMMY_CONTRIBUTORS.get(3)), DUMMY_COLORS.get(0)),
-            new Meeting(5, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(0)),
-            new Meeting(6, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(2))/*,
+            new Meeting(0, now, DUMMY_LOCATIONS.get(0), "today qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0).getEmail(), DUMMY_CONTRIBUTORS.get(2).getEmail()), DUMMY_COLORS.get(0)),
+            new Meeting(1, now, DUMMY_LOCATIONS.get(1), "today Pourquoi la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(1).getEmail(), DUMMY_CONTRIBUTORS.get(2).getEmail(), DUMMY_CONTRIBUTORS.get(3).getEmail()), DUMMY_COLORS.get(1)),
+            new Meeting(2, stringToDate("2021-09-09 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0).getEmail(), DUMMY_CONTRIBUTORS.get(1).getEmail(), DUMMY_CONTRIBUTORS.get(2).getEmail()), DUMMY_COLORS.get(2)),
+            new Meeting(3, stringToDate("2021-09-09 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0).getEmail(), DUMMY_CONTRIBUTORS.get(2).getEmail()), DUMMY_COLORS.get(3)),
+            new Meeting(4, stringToDate("2020-12-13 19:45"), DUMMY_LOCATIONS.get(1), "Pourquoi la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(1).getEmail(), DUMMY_CONTRIBUTORS.get(2).getEmail(), DUMMY_CONTRIBUTORS.get(3).getEmail()), DUMMY_COLORS.get(0)),
+            new Meeting(5, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0).getEmail(), DUMMY_CONTRIBUTORS.get(1).getEmail(), DUMMY_CONTRIBUTORS.get(2).getEmail()), DUMMY_COLORS.get(0)),
+            new Meeting(6, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0).getEmail(), DUMMY_CONTRIBUTORS.get(2).getEmail()), DUMMY_COLORS.get(2))/*,
             new Meeting(7, stringToDate("2020-12-13 19:45"), DUMMY_LOCATIONS.get(1), "Pourquoi la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2), DUMMY_CONTRIBUTORS.get(3)), DUMMY_COLORS.get(3)),
             new Meeting(9, stringToDate("2022-10-11 12:35"), DUMMY_LOCATIONS.get(0), "parce que la vie", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(1), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(0)),
             new Meeting(10, stringToDate("2021-10-02 09:22"), DUMMY_LOCATIONS.get(0), "qu'est ce que la vie ?", Arrays.asList(DUMMY_CONTRIBUTORS.get(0), DUMMY_CONTRIBUTORS.get(2)), DUMMY_COLORS.get(1)),
